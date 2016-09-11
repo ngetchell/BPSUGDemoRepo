@@ -6,6 +6,14 @@
     Get-Command -ParameterName Uri
     Get-Command -Module PackageManagement
 
+    # Number of cmdlets
+    # PowerShell v1 (Vista) = 129
+    # PowerShell v5 [Win10] = 1,285
+    # Linux v6.0.0 [CentOS] = ?
+    Get-Command | 
+        Measure-Object | 
+        Select-Object -ExpandProperty Count   
+
     # What modules are loaded?  Available?
     Get-Module
     Get-Module -ListAvailable
@@ -25,8 +33,15 @@
     $PSVersionTable
     $PROFILE | Select *
 
+    # New Built-In Variables
+    $isLinux
+    $isWindows
+    $IsOSX
+
 # Some things might be case sensitive...
     $ENV:PSModulePath # nope nope nope
+    # Tab Completion is still your friend
+    $env:psmodulepath #Now Tab
 
 # Credentials work, serialization, not so much
     $c = Get-Credential
