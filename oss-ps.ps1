@@ -10,9 +10,9 @@
     # PowerShell v1 (Vista) = 129
     # PowerShell v5 [Win10] = 1,285
     # Linux v6.0.0 [CentOS] = ?
-    Get-Command | 
-        Measure-Object | 
-        Select-Object -ExpandProperty Count   
+    Get-Command |
+        Measure-Object |
+        Select-Object -ExpandProperty Count
 
     # What modules are loaded?  Available?
     Get-Module
@@ -26,7 +26,7 @@
 
 # Explore!
     dir ENV:
-    $ENV:PSMODULEPATH
+    $ENV:PSMODULEPATH -split ":"
 
     Get-Variable
     Get-Variable -Name Is*
@@ -37,6 +37,7 @@
     $isLinux
     $isWindows
     $IsOSX
+    $IsCoreCLR
 
 # Some things might be case sensitive...
     $ENV:PSModulePath # nope nope nope
@@ -73,6 +74,3 @@
     }
 
 # Wrap some Python!
-
-
-
