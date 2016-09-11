@@ -1,3 +1,21 @@
+# PowerShell works!
+    # What commands are available?
+    # With a name? with Uri parameter? For a module?
+    Get-Command
+    Get-Command -Name *-Object
+    Get-Command -ParameterName Uri
+    Get-Command -Module PackageManagement
+
+    # What modules are loaded?  Available?
+    Get-Module
+    Get-Module -ListAvailable
+
+    # Get help for a command
+    Get-Help Invoke-RestMethod -Full
+
+    # See what type / members come back from Get-Process
+    Get-Process | Get-Member
+
 # Explore!
     dir ENV:
     $ENV:PSMODULEPATH
