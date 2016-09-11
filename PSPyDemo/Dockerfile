@@ -19,5 +19,5 @@ RUN mkdir /source/environments -p && \
 
 # Wrap up
 RUN yum clean all
-WORKDIR /source
-CMD [ "/usr/bin/powershell"]
+WORKDIR /source/environments/PSPyExample
+CMD [ "/bin/bash"]
