@@ -43,6 +43,10 @@
     # Tab Completion is still your friend
     $env:psmodulepath #Now Tab
 
+# Windows Presentation Framework Doesn't Work but shows in different ways
+    Get-Process | Out-Gridview # No cmdlet found
+    Get-Help Get-Process -ShowWindow # No Error at all
+
 # Credentials work, serialization, not so much
     $c = Get-Credential
     $c.GetNetworkCredential().Password
