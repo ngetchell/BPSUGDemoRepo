@@ -81,6 +81,7 @@
 # Some things work on any platform / .NET CLR, without modification
 # PSScriptAnalyzer rules to tell us what will work, what won't should be coming
 #    https://github.com/PowerShell/PSScriptAnalyzer/issues/605
+#    If you use ISESteroids, this is already in place: http://www.powertheshell.com/powershellonlinux/
     Import-Module WFTools
 
     # Recurse through an object to see what properties and data it returns
@@ -89,3 +90,6 @@
         ConvertTo-FlatObject
 
 # Wrap some Python!
+    cd ~/sc/BPSUGDemoRepo/PSPyDemo/
+    code ./
+    # Kick off a container

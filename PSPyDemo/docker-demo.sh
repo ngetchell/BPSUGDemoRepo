@@ -29,3 +29,5 @@ source bin/activate
 
 # PowerShell!
 powershell
+
+# Back to OSS-ps.ps1
