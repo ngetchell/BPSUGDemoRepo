@@ -59,13 +59,14 @@
 # *nix / macOS to Windows remoting - not yet
 
 # Install-Module not working yet, but...
-    Install-Package -Name PoshRSJob `
+    Install-Package -Name PoshRSJob, PSSlack `
                     -Source https://www.powershellgallery.com/api/v2 `
                     -ProviderName NuGet `
                     -ExcludeVersion `
-                    -Destination ~/sc/psvenv/
+                    -Destination ~/.local/share/powershell/Modules/ `
+                    -Force
 
-# Jobs - work, apart from 'Start', but...
+# Jobs - most cmdlets work, apart from 'Start', so...
     Import-Module ~/sc/psvenv/PoshRSJob -Force
     # Sleep for 10 seconds - should take ~ 10 seconds if parallel
     Measure-Command {
