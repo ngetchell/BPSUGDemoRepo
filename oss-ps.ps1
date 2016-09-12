@@ -91,5 +91,8 @@
 
 # Wrap some Python!
     cd ~/sc/BPSUGDemoRepo/PSPyDemo/
-    code ./
+    code ./docker-demo.sh
     # Kick off a container
+
+    . "/source/BPSUGDemoRepo/PSPyDemo/Get-PyADObject.ps1"
+    Get-PyADObject -SamAccountName wframe

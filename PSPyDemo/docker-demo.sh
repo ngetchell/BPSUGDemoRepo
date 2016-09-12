@@ -14,14 +14,14 @@
 
     # This might just be me, but this demo is pretty ugly on Windows 8.1 with Docker Toolbox...
 
-# Build the docker image - this takes a little while
-# Read the Dockerfile to see what's happening
-docker build -t wframe/pspydemo .
+# Pull the docker image - this takes a little while
+# Read the Dockerfile to see what's included
+docker pull -t ramblingcookiemonster/pspydemo
 
 # Kick off a container using the image we built. Should be fast!
-docker run -v ~/sc:/source -it wframe/pspydemo
+docker run -v ~/sc:/source -it ramblingcookiemonster/pspydemo
 # On Windows, I skipped over mapping the folder:
-docker run -it wframe/pspydemo
+docker run -it ramblingcookiemonster/pspydemo
 
 # We're in a container!
 # Activate the pyvenv virtual environment...

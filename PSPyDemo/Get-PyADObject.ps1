@@ -7,18 +7,26 @@ Function Get-PyADObject {
         $SamAccountName
     )
     $PythonScript = Join-Path $PSScriptRoot Get-PyADObject.py
+    $ParamPath = Join-Path $PSScriptRoot ADparams.xml
+    $Params = Import-CliXml -Path $ParamPath
 
     # Nothing fancy to call external programs.  This just works.
-    $Accounts = python $PythonScript --search_filter "(samaccountname=$SamAccountName)"
+    # I'm storing the parameters like this just for the demo...
+    $Accounts = & python $PythonScript --search_filter "(samaccountname=$SamAccountName)" `
+                                     --host $Params.host `
+                                     --userprincipalname $Params.userprincipalname `
+                                     --password $Params.password `
+                                     --search_base $Params.search_base
+
         # Other options https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
 
     # Join the text together, convert from json, select a few props
     $Accounts -join " " |
         ConvertFrom-Json |
-        Select-Object @{l='DistinguishedName';e={$_.dn}},
+        Select-Object @{l='givenName';e={$_.attributes.givenName}},
+                      @{l='sn';e={$_.attributes.sn}},
                       @{l='mail';e={$_.attributes.mail}},
-                      @{l='samaccountname';e={$_.attributes.samaccountname}},
-                      @{l='objectSid';e={$_.attributes.objectSid}}
+                      @{l='samaccountname';e={$_.attributes.samaccountname}}
 }
 
 # Thought: Consider the portability of solutions like this.
