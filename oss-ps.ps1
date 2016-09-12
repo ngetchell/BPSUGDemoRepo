@@ -59,7 +59,7 @@
 # *nix / macOS to Windows remoting - not yet
 
 # Install-Module not working yet, but...
-    Install-Package -Name PoshRSJob, PSSlack `
+    Install-Package -Name PoshRSJob, WFTools `
                     -Source https://www.powershellgallery.com/api/v2 `
                     -ProviderName NuGet `
                     -ExcludeVersion `
@@ -67,15 +67,25 @@
                     -Force
 
 # Jobs - most cmdlets work, apart from 'Start', so...
-    Import-Module ~/sc/psvenv/PoshRSJob -Force
+    Import-Module PoshRSJob -Force
     # Sleep for 10 seconds - should take ~ 10 seconds if parallel
     Measure-Command {
         1..10 |
-        Start-RSJob {
-            start-sleep -Seconds 10
-        } -Throttle 11 |
+        Start-RSJob -Throttle 11 {
+            start-sleep -Seconds 5
+        } |
         Wait-RSJob |
         Receive-RSJob
     }
+
+# Some things work on any platform / .NET CLR, without modification
+# PSScriptAnalyzer rules to tell us what will work, what won't should be coming
+#    https://github.com/PowerShell/PSScriptAnalyzer/issues/605
+    Import-Module WFTools
+
+    # Recurse through an object to see what properties and data it returns
+    # Similar to Show-Object, but can simplify XML exploration, works on *nix
+    Invoke-RestMethod "https://api.stackexchange.com/2.0/questions/unanswered?order=desc&sort=activity&tagged=powershell&pagesize=5&site=stackoverflow" |
+        ConvertTo-FlatObject
 
 # Wrap some Python!

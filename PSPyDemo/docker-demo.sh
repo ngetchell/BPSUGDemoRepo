@@ -8,6 +8,7 @@
     # If using docker machine, create a default machine
        # After the install, 'Docker Quickstart Terminal' will create this for you
        # Or you can create it manually...
+       # eval "$(docker-machine env default)"
 
     # Navigate to path with Dockerfile
 
